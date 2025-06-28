@@ -23,6 +23,19 @@ android {
     }
 }
 
+repositories {
+    maven {
+        url = 'https://maven.brott.dev/'
+    }
+}
+
 dependencies {
     implementation project(':FtcRobotController')
+
+    // Pond
+    implementation 'com.automaducks:pond:0.9.0'
+
+    // ACME Libraries
+    implementation 'com.acmerobotics.roadrunner:core:1.0.1'
+    implementation 'com.acmerobotics.dashboard:dashboard:0.4.16'
 }
