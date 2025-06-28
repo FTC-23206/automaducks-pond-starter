@@ -2,19 +2,19 @@
  * Copyright (c) 2025 Automaducks - FTC 23206
  * All rights reserved.
  */
-package org.firstinspires.ftc.samplecode;
+package org.firstinspires.ftc.teamcode;
 
 import com.automaducks.pond.commands.*;
 import com.automaducks.pond.subsystems.IDrivetrain;
 import com.automaducks.pond.common.Pose2D;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.samplecode.integration.*;
-import org.firstinspires.ftc.samplecode.subsystems.*;
+import org.firstinspires.ftc.teamcode.integration.*;
+import org.firstinspires.ftc.teamcode.subsystems.*;
 
 /** @noinspection unused*/
 @TeleOp(name = "Drive Operation")
-public class OperationDrive extends org.firstinspires.ftc.samplecode.integration.OperationBase {
+public class OperationDrive extends org.firstinspires.ftc.teamcode.integration.OperationBase {
 
     /**
      * Add your robot initialization here.
@@ -24,11 +24,11 @@ public class OperationDrive extends org.firstinspires.ftc.samplecode.integration
     @Override
     protected void onInit() {
 
-        org.firstinspires.ftc.samplecode.integration.HardwareMapAccessor hardwareMapAccessor = new org.firstinspires.ftc.samplecode.integration.HardwareMapAccessor(hardwareMap);
+        org.firstinspires.ftc.teamcode.integration.HardwareMapAccessor hardwareMapAccessor = new org.firstinspires.ftc.teamcode.integration.HardwareMapAccessor(hardwareMap);
 
-        robotSubsystems.add(new org.firstinspires.ftc.samplecode.subsystems.DeadWheelsLocalizer(hardwareMapAccessor, logger));
-        robotSubsystems.add(new org.firstinspires.ftc.samplecode.subsystems.ArmController(hardwareMapAccessor, logger));
-        robotSubsystems.add(new org.firstinspires.ftc.samplecode.subsystems.MecanumDrive(hardwareMapAccessor, logger));
+        robotSubsystems.add(new org.firstinspires.ftc.teamcode.subsystems.DeadWheelsLocalizer(hardwareMapAccessor, logger));
+        robotSubsystems.add(new org.firstinspires.ftc.teamcode.subsystems.ArmController(hardwareMapAccessor, logger));
+        robotSubsystems.add(new org.firstinspires.ftc.teamcode.subsystems.MecanumDrive(hardwareMapAccessor, logger));
     }
 
     /**
@@ -41,7 +41,7 @@ public class OperationDrive extends org.firstinspires.ftc.samplecode.integration
 
         // Setup driving commands.
         IDrivetrain drivetrain = robotSubsystems.findFirst(IDrivetrain.class);
-        org.firstinspires.ftc.samplecode.subsystems.ArmController armController = robotSubsystems.findFirst(org.firstinspires.ftc.samplecode.subsystems.ArmController.class);
+        org.firstinspires.ftc.teamcode.subsystems.ArmController armController = robotSubsystems.findFirst(org.firstinspires.ftc.teamcode.subsystems.ArmController.class);
 
         // Chassis movement
         Command chassisMovement =

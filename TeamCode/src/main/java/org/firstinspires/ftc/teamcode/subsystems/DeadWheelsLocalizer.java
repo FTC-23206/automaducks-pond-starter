@@ -3,7 +3,7 @@
  * All rights reserved.
  */
 
-package org.firstinspires.ftc.samplecode.subsystems;
+package org.firstinspires.ftc.teamcode.subsystems;
 
 import com.automaducks.pond.common.Pose2D;
 import com.automaducks.pond.common.PoseAndVelocity;
@@ -12,8 +12,8 @@ import com.automaducks.pond.subsystems.*;
 import com.automaducks.pond.utility.*;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-import org.firstinspires.ftc.samplecode.Configuration;
-import org.firstinspires.ftc.samplecode.integration.HardwareMapAccessor;
+import org.firstinspires.ftc.teamcode.Configuration;
+import org.firstinspires.ftc.teamcode.integration.HardwareMapAccessor;
 
 /**
  * Tracks robot position through dead wheels.

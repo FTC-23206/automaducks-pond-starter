@@ -2,15 +2,15 @@
  * Copyright (c) 2025 Automaducks - FTC 23206
  * All rights reserved.
  */
-package org.firstinspires.ftc.samplecode.subsystems;
+package org.firstinspires.ftc.teamcode.subsystems;
 
 import com.automaducks.pond.kinematics.AngularActuatorCalculator;
 import com.automaducks.pond.subsystems.SubsystemBase;
 import com.automaducks.pond.utility.ITelemetryLogger;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-import org.firstinspires.ftc.samplecode.Configuration;
-import org.firstinspires.ftc.samplecode.integration.HardwareMapAccessor;
+import org.firstinspires.ftc.teamcode.Configuration;
+import org.firstinspires.ftc.teamcode.integration.HardwareMapAccessor;
 
 /**
  * Sample robot arm controller.

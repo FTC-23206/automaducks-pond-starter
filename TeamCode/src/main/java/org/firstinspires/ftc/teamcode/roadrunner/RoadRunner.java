@@ -2,7 +2,7 @@
  * Copyright (c) 2024 Automaducks - FTC 23206
  * All rights reserved.
  */
-package org.firstinspires.ftc.samplecode.roadrunner;
+package org.firstinspires.ftc.teamcode.roadrunner;
 
 import androidx.annotation.NonNull;
 
@@ -10,7 +10,7 @@ import com.acmerobotics.roadrunner.*;
 import com.automaducks.pond.common.Pose2D;
 import com.automaducks.pond.kinematics.ITimedTrajectory;
 
-import org.firstinspires.ftc.samplecode.Configuration;
+import org.firstinspires.ftc.teamcode.Configuration;
 
 import java.util.Arrays;
 import java.util.List;

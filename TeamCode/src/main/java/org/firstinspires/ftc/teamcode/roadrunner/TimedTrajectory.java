@@ -2,7 +2,7 @@
  * Copyright (c) 2024 Automaducks - FTC 23206
  * All rights reserved.
  */
-package org.firstinspires.ftc.samplecode.roadrunner;
+package org.firstinspires.ftc.teamcode.roadrunner;
 
 import com.acmerobotics.roadrunner.Pose2dDual;
 import com.acmerobotics.roadrunner.Time;
@@ -64,8 +64,8 @@ public class TimedTrajectory implements ITimedTrajectory {
         Pose2dDual<Time> targetPose = currentTrajectory.get(currentElapsedTime);
 
         return new PoseAndVelocity(
-            org.firstinspires.ftc.samplecode.roadrunner.RoadRunner.fromRoadRunnerToPondPose(targetPose.value()),
-            org.firstinspires.ftc.samplecode.roadrunner.RoadRunner.fromRoadRunnerToPondPose(targetPose.velocity())
+            org.firstinspires.ftc.teamcode.roadrunner.RoadRunner.fromRoadRunnerToPondPose(targetPose.value()),
+            org.firstinspires.ftc.teamcode.roadrunner.RoadRunner.fromRoadRunnerToPondPose(targetPose.velocity())
         );
     }
 

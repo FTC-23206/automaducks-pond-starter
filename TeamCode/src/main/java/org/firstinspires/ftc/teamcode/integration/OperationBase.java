@@ -2,7 +2,7 @@
  * Copyright (c) 2025 Automaducks - FTC 23206
  * All rights reserved.
  */
-package org.firstinspires.ftc.samplecode.integration;
+package org.firstinspires.ftc.teamcode.integration;
 
 import com.automaducks.pond.commands.CommandScheduler;
 import com.automaducks.pond.subsystems.*;

@@ -2,7 +2,8 @@
  * Copyright (c) 2025 Automaducks - FTC 23206
  * All rights reserved.
  */
-package org.firstinspires.ftc.samplecode;
+
+package org.firstinspires.ftc.teamcode;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.automaducks.pond.commands.FollowTrajectoryCommandParams;
