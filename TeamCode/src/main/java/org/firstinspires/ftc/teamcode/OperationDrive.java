@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.subsystems.*;
 
 /** @noinspection unused*/
 @TeleOp(name = "Drive Operation")
-public class OperationDrive extends org.firstinspires.ftc.teamcode.integration.OperationBase {
+public class OperationDrive extends OperationBase {
 
     /**
      * Add your robot initialization here.
@@ -24,11 +24,11 @@ public class OperationDrive extends org.firstinspires.ftc.teamcode.integration.O
     @Override
     protected void onInit() {
 
-        org.firstinspires.ftc.teamcode.integration.HardwareMapAccessor hardwareMapAccessor = new org.firstinspires.ftc.teamcode.integration.HardwareMapAccessor(hardwareMap);
+        HardwareMapAccessor hardwareMapAccessor = new HardwareMapAccessor(hardwareMap);
 
-        robotSubsystems.add(new org.firstinspires.ftc.teamcode.subsystems.DeadWheelsLocalizer(hardwareMapAccessor, logger));
-        robotSubsystems.add(new org.firstinspires.ftc.teamcode.subsystems.ArmController(hardwareMapAccessor, logger));
-        robotSubsystems.add(new org.firstinspires.ftc.teamcode.subsystems.MecanumDrive(hardwareMapAccessor, logger));
+        robotSubsystems.add(new DeadWheelsLocalizer(hardwareMapAccessor, logger));
+        robotSubsystems.add(new ArmController(hardwareMapAccessor, logger));
+        robotSubsystems.add(new MecanumDrive(hardwareMapAccessor, logger));
     }
 
     /**
@@ -41,7 +41,7 @@ public class OperationDrive extends org.firstinspires.ftc.teamcode.integration.O
 
         // Setup driving commands.
         IDrivetrain drivetrain = robotSubsystems.findFirst(IDrivetrain.class);
-        org.firstinspires.ftc.teamcode.subsystems.ArmController armController = robotSubsystems.findFirst(org.firstinspires.ftc.teamcode.subsystems.ArmController.class);
+        ArmController armController = robotSubsystems.findFirst(ArmController.class);
 
         // Chassis movement
         Command chassisMovement =
