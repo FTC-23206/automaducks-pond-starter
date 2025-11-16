@@ -21,6 +21,19 @@ import java.util.function.Function;
  */
 public class RoadRunner {
 
+    public static VelConstraint getVelocityConstraint(double gain) {
+        return new MinVelConstraint(Arrays.asList(
+            new TranslationalVelConstraint(gain * Configuration.Autonomous.MaxTranslationSpeedCmPerSec),
+            new AngularVelConstraint(gain * Configuration.Autonomous.MaxAngularSpeedRadPerSec)));
+    }
+
+    public static AccelConstraint getAccelerationConstraint(double gain) {
+
+        return new ProfileAccelConstraint(
+            gain * -Configuration.Autonomous.MaxDecelerationCmPerSec2,
+            gain * Configuration.Autonomous.MaxAccelerationCmPerSec2);
+    }
+
     /**
      * Creates a road runner trajectory builder.
      * @param initialPose initial pose.
@@ -34,24 +47,15 @@ public class RoadRunner {
         // Configure Road Runner
         TrajectoryBuilderParams trajectoryBuilderParams = new TrajectoryBuilderParams(
             1e-6,
-            new ProfileParams(5, 0.1, 1e-2));
-
-        VelConstraint baseVelConstraint = new MinVelConstraint(Arrays.asList(
-            new TranslationalVelConstraint(Configuration.Autonomous.maximum_translational_speed_mm_sec),
-            new AngularVelConstraint(Configuration.Autonomous.maximum_angular_speed_rad_sec)
-        ));
-
-        AccelConstraint baseAccelConstraint = new ProfileAccelConstraint(
-            -Configuration.Autonomous.maximum_deceleration_mm_sec2,
-            Configuration.Autonomous.maximum_acceleration_mm_sec2);
+            new ProfileParams(1, 0.1, 1e-2));
 
         // Create a trajectory builder
         TrajectoryBuilder builderInstance = new TrajectoryBuilder(
             trajectoryBuilderParams,
             fromPondToRoadRunnerPose(initialPose),
             0.0,
-            baseVelConstraint,
-            baseAccelConstraint);
+            getVelocityConstraint(1.0),
+            getAccelerationConstraint(1.0));
 
         // Execute the lambda
         List<Trajectory> trajectoryList = builder.apply(builderInstance);

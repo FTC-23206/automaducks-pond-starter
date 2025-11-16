@@ -27,7 +27,7 @@ public class MecanumDrive extends SubsystemBase implements IDrivetrain {
 
     private final Pose2D targetPower = new Pose2D();
 
-    public MecanumDrive(HardwareMapAccessor hardwareMap, ITelemetryLogger logger) {
+    public MecanumDrive(HardwareMapAccessor hardwareMap, ILogger logger) {
 
         super(logger);
 

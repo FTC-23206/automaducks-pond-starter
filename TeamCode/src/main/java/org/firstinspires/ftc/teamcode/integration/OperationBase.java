@@ -32,7 +32,7 @@ public abstract class OperationBase extends LinearOpMode {
     private final AverageTracker periodicTimeTracker = new AverageTracker(100);
     private final List<LynxModule> lynxModules = new ArrayList<>();
 
-    protected final ITelemetryLogger logger = new TelemetryLogger(telemetry);
+    protected final ILogger logger = new Logger(telemetry);
     protected final SubsystemHub robotSubsystems = new SubsystemHub(logger);
     protected final CommandScheduler commandScheduler = new CommandScheduler(logger);
 
@@ -58,6 +58,7 @@ public abstract class OperationBase extends LinearOpMode {
             initInternal();
 
             while (!isStarted()) {
+                periodicInternal();
                 sleep(20);
             }
 

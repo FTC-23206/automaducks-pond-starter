@@ -6,7 +6,7 @@ package org.firstinspires.ftc.teamcode.subsystems;
 
 import com.automaducks.pond.kinematics.AngularActuatorCalculator;
 import com.automaducks.pond.subsystems.SubsystemBase;
-import com.automaducks.pond.utility.ITelemetryLogger;
+import com.automaducks.pond.utility.ILogger;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.Configuration;
@@ -25,7 +25,7 @@ public class ArmController extends SubsystemBase {
      * @param hardwareMap hardware maps accessor.
      * @param logger logger instance.
      */
-    public ArmController(HardwareMapAccessor hardwareMap, ITelemetryLogger logger) {
+    public ArmController(HardwareMapAccessor hardwareMap, ILogger logger) {
 
         super(logger);
 

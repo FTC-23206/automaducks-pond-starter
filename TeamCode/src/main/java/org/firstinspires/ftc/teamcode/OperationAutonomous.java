@@ -11,34 +11,39 @@ import com.automaducks.pond.subsystems.*;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
+import org.firstinspires.ftc.teamcode.integration.*;
+import org.firstinspires.ftc.teamcode.roadrunner.*;
+import org.firstinspires.ftc.teamcode.subsystems.*;
+
 /** @noinspection unused*/
 @Autonomous(name = "Auto Operation")
-public class OperationAutonomous extends org.firstinspires.ftc.teamcode.integration.OperationBase {
+public class OperationAutonomous extends OperationBase {
 
     @Override
     protected void onInit() {
 
-        org.firstinspires.ftc.teamcode.integration.HardwareMapAccessor hardwareMapAccessor = new org.firstinspires.ftc.teamcode.integration.HardwareMapAccessor(hardwareMap);
+        HardwareMapAccessor hardwareMapAccessor = new HardwareMapAccessor(hardwareMap, logger);
 
-        robotSubsystems.add(new org.firstinspires.ftc.teamcode.subsystems.DeadWheelsLocalizer(hardwareMapAccessor, logger));
-        robotSubsystems.add(new org.firstinspires.ftc.teamcode.subsystems.ArmController(hardwareMapAccessor, logger));
-        robotSubsystems.add(new org.firstinspires.ftc.teamcode.subsystems.MecanumDrive(hardwareMapAccessor, logger));
+        robotSubsystems.add(new DeadWheelsLocalizer(hardwareMapAccessor, logger));
+        robotSubsystems.add(new ArmController(hardwareMapAccessor, logger));
+        robotSubsystems.add(new MecanumDrive(hardwareMapAccessor, logger));
 
         // Auto Only
-        robotSubsystems.add(new HolonomicController(org.firstinspires.ftc.teamcode.Configuration.Autonomous.HolonomicConfig, logger));
+        robotSubsystems.add(new HolonomicController(Configuration.Autonomous.HolonomicConfig, logger));
     }
 
     @Override
     protected void onStart() {
 
         Pose2D initialPose = new Pose2D(0, 0, 0);
-        FollowTrajectoryCommandParams trajectoryParams = org.firstinspires.ftc.teamcode.Configuration.Autonomous.TrajectoryParams;
+        CommandFactory commandFactory = new CommandFactory(this.robotSubsystems, this.logger);
+        FollowTrajectoryCommandParams trajectoryParams = Configuration.Autonomous.TrajectoryParams;
 
-        ITimedTrajectory trajectory = org.firstinspires.ftc.teamcode.roadrunner.RoadRunner.createTrajectory(initialPose, b -> b
-            .lineToX(600)
+        ITimedTrajectory trajectory = RoadRunner.createTrajectory(initialPose, b -> b
+            .lineToX(60)
             .build());
 
-        Command command = Commands.followTrajectory("Test", trajectory, trajectoryParams, robotSubsystems);
+        Command command = commandFactory.followTrajectory("Test", trajectory, trajectoryParams);
 
         commandScheduler.runOnce(command);
 

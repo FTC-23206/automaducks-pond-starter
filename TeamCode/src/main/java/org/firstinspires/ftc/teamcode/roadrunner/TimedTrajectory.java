@@ -22,7 +22,7 @@ public class TimedTrajectory implements ITimedTrajectory {
 
     private final List<TimeTrajectory> trajectoryList = new ArrayList<>();
     private final Duration totalDuration;
-    private double timePassedMillis = 0;
+    private double trajectoryTimeBaseSeconds = 0;
 
     /**
      * Constructs a new instance of the RoadRunnerTrajectoryAdapter class.
@@ -40,32 +40,32 @@ public class TimedTrajectory implements ITimedTrajectory {
         for (TimeTrajectory t : this.trajectoryList){
             totalDuration += t.duration;
         }
-        this.totalDuration = Duration.ofMillis(totalDuration);
+        this.totalDuration = Duration.ofSeconds(totalDuration);
     }
 
     @Override
     public PoseAndVelocity getTargetPose(Duration elapsedTime) {
 
-        double currentElapsedTime = elapsedTime.toMillis() - this.timePassedMillis;
+        double trajectoryTimeOffsetSeconds = elapsedTime.toSeconds() - this.trajectoryTimeBaseSeconds;
 
         // Remove  completed trajectories
         TimeTrajectory currentTrajectory = trajectoryList.get(0);
-        while (currentElapsedTime > currentTrajectory.duration && trajectoryList.size() > 1) {
+        while (trajectoryTimeOffsetSeconds > currentTrajectory.duration && trajectoryList.size() > 1) {
 
             // Add time passed
-            this.timePassedMillis += currentTrajectory.duration;
-            currentElapsedTime = elapsedTime.toMillis() - this.timePassedMillis;
+            this.trajectoryTimeBaseSeconds += currentTrajectory.duration;
+            trajectoryTimeOffsetSeconds = elapsedTime.toSeconds() - this.trajectoryTimeBaseSeconds;
 
             // Move to next trajectory
             trajectoryList.remove(0);
             currentTrajectory = trajectoryList.get(0);
         }
 
-        Pose2dDual<Time> targetPose = currentTrajectory.get(currentElapsedTime);
+        Pose2dDual<Time> targetPose = currentTrajectory.get(trajectoryTimeOffsetSeconds);
 
         return new PoseAndVelocity(
-            org.firstinspires.ftc.teamcode.roadrunner.RoadRunner.fromRoadRunnerToPondPose(targetPose.value()),
-            org.firstinspires.ftc.teamcode.roadrunner.RoadRunner.fromRoadRunnerToPondPose(targetPose.velocity())
+            RoadRunner.fromRoadRunnerToPondPose(targetPose.value()),
+            RoadRunner.fromRoadRunnerToPondPose(targetPose.velocity())
         );
     }
 

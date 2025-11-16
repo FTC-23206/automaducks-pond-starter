@@ -2,7 +2,6 @@
  * Copyright (c) 2025 Automaducks - FTC 23206
  * All rights reserved.
  */
-
 package org.firstinspires.ftc.teamcode;
 
 import com.acmerobotics.dashboard.config.Config;
@@ -23,6 +22,11 @@ public class Configuration {
     @Config
     public static class Chassis {
 
+        // These are the master values for chassis PID, Autonomous Controller, etc. They should reflect the
+        // measures values and should not be changed in order to accommodate to these individual subsystems
+        public static double MeasureMaximumTranslationalVelocityCmPerSec = 200.0;
+        public static double MeasuredMaximumAngularVelocityRadPerSec = Math.PI;
+
         // Motors
         public static MotorParams MotorFrontLeft    = new MotorParams("front_left", MotorParams.Mode.RUN_WITHOUT_ENCODER, false);
         public static MotorParams MotorFrontRight   = new MotorParams("front_right", MotorParams.Mode.RUN_WITHOUT_ENCODER, true);
@@ -31,10 +35,10 @@ public class Configuration {
 
         // Dead wheels parameters
         public static DeadWheelsKinematicsParams DeadWheels = new DeadWheelsKinematicsParams(
-            63,
-            196,
-            2 * Math.PI * 18.688524,
-            8192);                          // https://www.revrobotics.com/rev-11-1271/
+            -7.5,
+            16.905,
+            Math.PI * 3.2,
+            2000);
     }
 
     /**
@@ -57,10 +61,11 @@ public class Configuration {
     public static class Autonomous {
 
         // Road Runner
-        public static double maximum_translational_speed_mm_sec = 700;
-        public static double maximum_angular_speed_rad_sec = Math.PI / 2;
-        public static double maximum_acceleration_mm_sec2 = 700;
-        public static double maximum_deceleration_mm_sec2 = 500;
+        public static double MaxTranslationSpeedCmPerSec = 180;
+        public static double MaxAngularSpeedRadPerSec = Math.PI / 2;
+        public static double MaxAccelerationCmPerSec2 = 150;
+        public static double MaxDecelerationCmPerSec2 = 100;
+
 
         public static FollowTrajectoryCommandParams TrajectoryParams = new FollowTrajectoryCommandParams(
             10,
@@ -70,7 +75,10 @@ public class Configuration {
         );
 
         public static HolonomicControllerParams HolonomicConfig = new HolonomicControllerParams(
-            0.01, 0.01, 2.0,
-            0.001,0.001, 0.0);
+            Chassis.MeasureMaximumTranslationalVelocityCmPerSec,
+            Chassis.MeasuredMaximumAngularVelocityRadPerSec,
+            0.08, 0.08, 0.5,
+            0.02, 0.02, 0.1,
+            0.8,1.4, 0.5);
     }
 }

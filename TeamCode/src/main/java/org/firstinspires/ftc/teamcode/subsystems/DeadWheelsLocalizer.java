@@ -32,7 +32,7 @@ public class DeadWheelsLocalizer extends SubsystemBase implements ILocalizer {
      * @param logger telemetry logger.
      * @param hardwareMap robot hardware map.
      */
-    public DeadWheelsLocalizer(HardwareMapAccessor hardwareMap, ITelemetryLogger logger) {
+    public DeadWheelsLocalizer(HardwareMapAccessor hardwareMap, ILogger logger) {
         super(logger);
 
         this.deadWheelsKinematics = new DeadWheelsKinematics(logger, Configuration.Chassis.DeadWheels);
